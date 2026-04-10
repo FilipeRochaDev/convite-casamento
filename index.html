@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Casamento - Nikelly & Filipe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .floral-bg {
+            background-color: #fdfbf7;
+            background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+        }
+        .view-hidden {
+            display: none;
+        }
+        /* Efeito de menu clássico */
+        .menu-dots {
+            flex-grow: 1;
+            border-bottom: 1px dotted #a8a29e;
+            margin: 0 10px;
+            position: relative;
+            top: -5px;
+        }
+        /* Loader styles */
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #92400e;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="floral-bg text-gray-800">
+
+    <!-- VIEW 1: CONVITE PRINCIPAL -->
+    <div id="main-view">
+        <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+            <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
+                <a href="#" class="text-xl font-serif font-bold text-amber-800">N & F</a>
+                <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-medium">
+                    <a href="#inicio" class="hover:text-amber-600 transition">Início</a>
+                    <a href="#evento" class="hover:text-amber-600 transition">O Evento</a>
+                    <a href="#presentes" class="hover:text-amber-600 transition">Presentes</a>
+                </div>
+                <button class="md:hidden text-amber-800" onclick="toggleMenu()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 flex flex-col p-4 space-y-4 text-center">
+                <a href="#inicio" onclick="toggleMenu()">Início</a>
+                <a href="#evento" onclick="toggleMenu()">O Evento</a>
+                <a href="#presentes" onclick="toggleMenu()">Presentes</a>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <header id="inicio" class="relative h-screen flex items-center justify-center text-center text-white">
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+                <div class="absolute inset-0 bg-black/40"></div>
+            </div>
+            <div class="relative z-10 px-4">
+                <p class="uppercase tracking-[0.3em] mb-4 text-sm md:text-base">Nós vamos casar!</p>
+                <h1 class="text-5xl md:text-8xl mb-6">Nikelly & Filipe</h1>
+                <p class="text-xl md:text-2xl italic font-serif">20 de Abril de 2026</p>
+                <div class="mt-12">
+                    <a href="#presentes" class="bg-amber-700 hover:bg-amber-800 text-white px-8 py-3 rounded-full transition duration-300 uppercase tracking-widest text-sm inline-block shadow-lg">Ver Presentes</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contagem Regressiva -->
+        <section class="py-16 bg-white shadow-sm">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="text-3xl mb-10 text-amber-800">Contagem Regressiva</h2>
+                <div class="grid grid-cols-4 gap-4" id="countdown">
+                    <div class="flex flex-col">
+                        <span id="days" class="text-4xl md:text-6xl font-serif text-gray-700">00</span>
+                        <span class="text-xs uppercase tracking-widest mt-2">Dias</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span id="hours" class="text-4xl md:text-6xl font-serif text-gray-700">00</span>
+                        <span class="text-xs uppercase tracking-widest mt-2">Horas</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span id="minutes" class="text-4xl md:text-6xl font-serif text-gray-700">00</span>
+                        <span class="text-xs uppercase tracking-widest mt-2">Minutos</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span id="seconds" class="text-4xl md:text-6xl font-serif text-gray-700">00</span>
+                        <span class="text-xs uppercase tracking-widest mt-2">Segundos</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- O Evento -->
+        <section id="evento" class="py-20 bg-amber-50">
+            <div class="max-w-5xl mx-auto px-4 text-center">
+                <h2 class="text-4xl mb-16 text-amber-800 font-serif">Onde e Quando</h2>
+                <div class="grid md:grid-cols-2 gap-8 text-left">
+                    <div class="bg-white p-8 rounded-lg border border-amber-100">
+                        <h3 class="text-2xl mb-4 font-serif">Cerimónia</h3>
+                        <p class="font-bold text-xl">13:00h</p>
+                        <p class="text-gray-600">Cartório do 5º Ofício de Taguatinga</p>
+                        <p class="text-sm text-gray-500 mt-2">St. A Norte QNA 04, L 32/34 - Taguatinga</p>
+                        <a href="https://maps.google.com/maps?q=Cartório+do+5º+Ofício+de+Registro+Civil+de+Taguatinga" target="_blank" class="inline-block mt-4 text-amber-700 hover:underline text-xs uppercase tracking-widest font-bold">Ver Mapa</a>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg border border-amber-100">
+                        <h3 class="text-2xl mb-4 font-serif">Almoço</h3>
+                        <p class="font-bold text-xl">14:30h</p>
+                        <p class="text-gray-600">Coco Bambú - DF PLAZA</p>
+                        <p class="text-sm text-gray-500 mt-2">Águas Claras, Brasília - DF</p>
+                        <a href="https://maps.google.com/maps?q=Coco+Bambu+DF+Plaza" target="_blank" class="inline-block mt-4 text-amber-700 hover:underline text-xs uppercase tracking-widest font-bold">Ver Mapa</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Presentes Link -->
+        <section id="presentes" class="py-20 bg-white text-center">
+            <h2 class="text-4xl mb-8 text-amber-800 font-serif">Presentes</h2>
+            <p class="mb-10 text-gray-600 max-w-lg mx-auto">Sua presença é o que mais importa! Se desejar nos presentear de forma especial para a nossa lua de mel, confira as opções abaixo.</p>
+            <button onclick="goToPixPage()" class="bg-amber-800 text-white px-10 py-4 rounded-full font-bold uppercase tracking-widest shadow-lg hover:scale-105 transition-transform">
+                Ver Menu de Presentes (PIX)
+            </button>
+        </section>
+
+        <footer class="py-12 bg-gray-900 text-white text-center">
+            <p class="font-serif italic text-lg">Nikelly & Filipe</p>
+            <p class="text-gray-500 text-xs uppercase tracking-widest mt-2">Brasília • 20 de Abril de 2026</p>
+        </footer>
+    </div>
+
+    <!-- VIEW 2: MENU DE PRESENTES (PÁGINA 2) -->
+    <div id="pix-view" class="view-hidden min-h-screen flex flex-col items-center justify-center p-4 floral-bg">
+        <div class="max-w-2xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden relative border-8 border-white">
+            
+            <!-- Imagem de Fundo Gerada por IA -->
+            <div id="ai-bg-container" class="absolute inset-0 opacity-20 pointer-events-none"></div>
+
+            <!-- Loader de IA -->
+            <div id="ai-loader" class="absolute inset-0 flex flex-col items-center justify-center bg-white/90 z-20">
+                <div class="loader mb-4"></div>
+                <p class="text-amber-900 font-serif italic">A preparar o menu artístico...</p>
+            </div>
+
+            <!-- Conteúdo do Menu -->
+            <div class="relative z-10 p-8 md:p-16 flex flex-col items-center">
+                <button onclick="goToMainPage()" class="absolute top-4 right-4 text-gray-400 hover:text-amber-800 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+                <div class="text-center mb-10">
+                    <h2 class="text-sm uppercase tracking-[0.4em] text-amber-800 mb-2">Operação Lua de Mel</h2>
+                    <h3 class="text-4xl font-serif italic text-gray-800">Menu de Contribuições</h3>
+                    <div class="w-16 h-px bg-amber-200 mx-auto mt-4"></div>
+                </div>
+
+                <!-- Lista do Menu -->
+                <div class="w-full space-y-8 mb-12">
+                    <div class="flex items-end">
+                        <span class="text-lg text-gray-700 font-medium">1. A tia que dava meia no amigo oculto</span>
+                        <div class="menu-dots"></div>
+                        <span class="text-lg font-serif font-bold text-amber-900">R$ 50,00</span>
+                    </div>
+                    <div class="flex items-end">
+                        <span class="text-lg text-gray-700 font-medium">2. O mão de vaca</span>
+                        <div class="menu-dots"></div>
+                        <span class="text-lg font-serif font-bold text-amber-900">R$ 100,00</span>
+                    </div>
+                    <div class="flex items-end">
+                        <span class="text-lg text-gray-700 font-medium">3. Sem grana mas amoroso(a)</span>
+                        <div class="menu-dots"></div>
+                        <span class="text-lg font-serif font-bold text-amber-900">R$ 200,00</span>
+                    </div>
+                    <div class="flex items-end">
+                        <span class="text-lg text-gray-700 font-medium">4. O bem sucedido(a) da família</span>
+                        <div class="menu-dots"></div>
+                        <span class="text-lg font-serif font-bold text-amber-900">R$ 500,00</span>
+                    </div>
+                    <div class="flex items-end">
+                        <span class="text-lg text-gray-700 font-medium">5. O ostentação Prime Plus Padrão Nº 1</span>
+                        <div class="menu-dots"></div>
+                        <span class="text-lg font-serif font-bold text-amber-900">FAZ O TEU NOME</span>
+                    </div>
+                </div>
+
+                <!-- Footer do Menu -->
+                <div class="text-center w-full pt-8 border-t border-amber-50">
+                    <p class="text-xs uppercase tracking-widest text-amber-800 mb-4">Chave PIX (E-mail)</p>
+                    <div class="bg-stone-50 p-4 rounded-lg mb-6 text-sm font-mono text-gray-600 break-all select-all border border-stone-100">
+                        filipeenikelly@proton.me
+                    </div>
+                    <button onclick="copyPixManual()" class="bg-amber-800 text-white px-8 py-3 rounded-full text-xs uppercase tracking-widest font-bold shadow-md hover:bg-amber-900 transition-colors">
+                        Copiar Chave PIX
+                    </button>
+                    <p id="copyFeedback" class="text-green-600 text-xs mt-3 opacity-0 transition-opacity">Copiado! Agora é só colar no seu banco.</p>
+                </div>
+            </div>
+        </div>
+        
+        <button onclick="goToMainPage()" class="mt-8 text-amber-800 font-bold hover:underline flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Voltar ao Início
+        </button>
+    </div>
+
+    <script>
+        const apiKey = "";
+        const weddingDate = new Date("Apr 20, 2026 13:00:00").getTime();
+
+        // Contagem Regressiva
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if(document.getElementById("days")) {
+                document.getElementById("days").innerText = days < 10 ? "0"+days : days;
+                document.getElementById("hours").innerText = hours < 10 ? "0"+hours : hours;
+                document.getElementById("minutes").innerText = minutes < 10 ? "0"+minutes : minutes;
+                document.getElementById("seconds").innerText = seconds < 10 ? "0"+seconds : seconds;
+            }
+        }, 1000);
+
+        // Navegação
+        function goToPixPage() {
+            document.getElementById('main-view').classList.add('view-hidden');
+            document.getElementById('pix-view').classList.remove('view-hidden');
+            window.scrollTo(0, 0);
+            generateMenuBackground();
+        }
+
+        function goToMainPage() {
+            document.getElementById('pix-view').classList.add('view-hidden');
+            document.getElementById('main-view').classList.remove('view-hidden');
+        }
+
+        function toggleMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        async function generateMenuBackground() {
+            const container = document.getElementById('ai-bg-container');
+            const loader = document.getElementById('ai-loader');
+            
+            if (container.innerHTML.trim() !== "") {
+                loader.classList.add('hidden');
+                return;
+            }
+
+            const prompt = "An elegant, high-end wedding menu background. Minimalist floral arrangements in soft watercolor, cream and gold color palette, plenty of white space for text overlay. Sophisticated, romantic, professional wedding stationery design.";
+
+            const retryFetch = async (url, options, retries = 5, backoff = 1000) => {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) throw new Error('API Error');
+                    return await response.json();
+                } catch (err) {
+                    if (retries > 0) {
+                        await new Promise(r => setTimeout(r, backoff));
+                        return retryFetch(url, options, retries - 1, backoff * 2);
+                    }
+                    throw err;
+                }
+            };
+
+            try {
+                const result = await retryFetch(
+                    `https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`,
+                    {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            instances: { prompt: prompt },
+                            parameters: { sampleCount: 1 }
+                        })
+                    }
+                );
+
+                const base64Image = result.predictions[0].bytesBase64Encoded;
+                container.innerHTML = `<img src="data:image/png;base64,${base64Image}" class="w-full h-full object-cover">`;
+                loader.classList.add('hidden');
+            } catch (error) {
+                console.error("Erro ao gerar imagem:", error);
+                container.style.background = "linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('https://www.transparenttextures.com/patterns/floral-paper.png')";
+                loader.classList.add('hidden');
+            }
+        }
+
+        function copyPixManual() {
+            const pixKey = "filipeenikelly@proton.me";
+            const el = document.createElement('textarea');
+            el.value = pixKey;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            const feedback = document.getElementById('copyFeedback');
+            feedback.style.opacity = '1';
+            setTimeout(() => feedback.style.opacity = '0', 3000);
+        }
+    </script>
+</body>
+</html>
